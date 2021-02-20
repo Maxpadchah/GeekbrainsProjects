@@ -28,28 +28,6 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    // Поле для кнопки стереть
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_gravity="right">
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="6dp"
-            android:textSize="35sp"
-            android:textColor="@color/green"
-            android:backgroundTint="@color/grey"
-            android:backgroundTintMode="@color/black"
-            android:text="@string/button_close"
-
-            />
-    </LinearLayout>
-
     // Поле кнопок С, (), %, /
     <LinearLayout
         android:layout_width="wrap_content"
