@@ -2,8 +2,8 @@
     <string name="app_name">Calculator_v1.0.0</string>
     <string name="button__C">C</string>
     <string name="button_close">&#8656;</string>
-    <string name="button_scoba">()</string>
-    <string name="button_Pr">%</string>
+    <string name="button_bracket">()</string>
+    <string name="button_percent">%</string>
     <string name="button_del">/</string>
     <string name="button_7">7</string>
     <string name="button_8">8</string>
@@ -19,7 +19,7 @@
     <string name="button_plus">+</string>
     <string name="button_char">+/-</string>
     <string name="button_0">0</string>
-    <string name="button_pt">.</string>
-    <string name="button_raw">=</string>
+    <string name="button_dot">.</string>
+    <string name="button_equally">=</string>
 
 </resources>
