@@ -2,9 +2,9 @@
     <string name="app_name">Calculator_v1.0.0</string>
     <string name="button__C">C</string>
     <string name="button_close">&#8656;</string>
-    <string name="button_bracket">()</string>
+    <string name="button_bracket">&#8730;</string>
     <string name="button_percent">%</string>
-    <string name="button_del">/</string>
+    <string name="button_del">&#247;</string>
     <string name="button_7">7</string>
     <string name="button_8">8</string>
     <string name="button_9">9</string>
