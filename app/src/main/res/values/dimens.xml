@@ -3,4 +3,5 @@
     <dimen name="button_indent">10dp</dimen>
     <dimen name="layout_size">10dp</dimen>
     <dimen name="text_size">30sp</dimen>
+    <dimen name="text_size_horisontal">20sp</dimen>
 </resources>
