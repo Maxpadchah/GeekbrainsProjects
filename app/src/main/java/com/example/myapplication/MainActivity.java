@@ -1,14 +1,17 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity {
     private TextView tv_console;
@@ -35,33 +38,16 @@ public class MainActivity extends AppCompatActivity {
     private String number1 = "";
     private String moushen = "";
     private String number2 = "";
+    public static final String KEY_PREFIX = MainActivity.class.getCanonicalName() + ".result";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializingButtons();
-        button_0.setOnClickListener(numberButtons);
-        button_1.setOnClickListener(numberButtons);
-        button_2.setOnClickListener(numberButtons);
-        button_3.setOnClickListener(numberButtons);
-        button_4.setOnClickListener(numberButtons);
-        button_5.setOnClickListener(numberButtons);
-        button_6.setOnClickListener(numberButtons);
-        button_7.setOnClickListener(numberButtons);
-        button_8.setOnClickListener(numberButtons);
-        button_9.setOnClickListener(numberButtons);
-        button_bracket.setOnClickListener(numberButtons);
-        button_C.setOnClickListener(numberButtons);
-        button_char.setOnClickListener(numberButtons);
-        button_percent.setOnClickListener(numberButtons);
-        button_del.setOnClickListener(numberButtons);
-        button_mul.setOnClickListener(numberButtons);
-        button_min.setOnClickListener(numberButtons);
-        button_plus.setOnClickListener(numberButtons);
-        button_dot.setOnClickListener(numberButtons);
-        button_equally.setOnClickListener(numberButtons);
+        onCreateButtons();
     }
+
 
     View.OnClickListener numberButtons = new View.OnClickListener() {
         @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
@@ -153,9 +139,20 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putString(KEY_PREFIX, (String) tv_console.getText());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        tv_console.setText(savedInstanceState.getString(KEY_PREFIX));
+    }
 
     public String equallyPress(String number1, String number2, String moushen) {
-        double result;
+        double result = 0;
         String resultString;
         if (!number1.equals("") && !number2.equals("") && !moushen.equals("")) {
             switch (moushen) {
@@ -186,8 +183,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         } else resultString = "";
-
-        return resultString;
+        if (resultString.length() > 21) return "Строка переполнена";
+        else return resultString;
     }
 
     private void initializingButtons() {
@@ -212,5 +209,28 @@ public class MainActivity extends AppCompatActivity {
         button_0 = findViewById(R.id.button_0);
         button_dot = findViewById(R.id.button_dot);
         button_equally = findViewById(R.id.button_equally);
+    }
+
+    private void onCreateButtons() {
+        button_0.setOnClickListener(numberButtons);
+        button_1.setOnClickListener(numberButtons);
+        button_2.setOnClickListener(numberButtons);
+        button_3.setOnClickListener(numberButtons);
+        button_4.setOnClickListener(numberButtons);
+        button_5.setOnClickListener(numberButtons);
+        button_6.setOnClickListener(numberButtons);
+        button_7.setOnClickListener(numberButtons);
+        button_8.setOnClickListener(numberButtons);
+        button_9.setOnClickListener(numberButtons);
+        button_bracket.setOnClickListener(numberButtons);
+        button_C.setOnClickListener(numberButtons);
+        button_char.setOnClickListener(numberButtons);
+        button_percent.setOnClickListener(numberButtons);
+        button_del.setOnClickListener(numberButtons);
+        button_mul.setOnClickListener(numberButtons);
+        button_min.setOnClickListener(numberButtons);
+        button_plus.setOnClickListener(numberButtons);
+        button_dot.setOnClickListener(numberButtons);
+        button_equally.setOnClickListener(numberButtons);
     }
 }
