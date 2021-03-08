@@ -35,6 +35,14 @@
         <item name="android:layout_margin">@dimen/LL_layout_margin</item>
         <item name="android:layout_gravity">center_horizontal</item>
     </style>
+    <style name="LinearLayout_type_buttons_horizont">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/layout_size</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">@dimen/LL_layout_margin</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
     <style name="LinearLayout_type_text_view">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
