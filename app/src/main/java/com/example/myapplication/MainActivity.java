@@ -4,14 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 public class MainActivity extends AppCompatActivity {
     private TextView tv_console;
@@ -47,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         initializingButtons();
         onCreateButtons();
     }
-
 
     View.OnClickListener numberButtons = new View.OnClickListener() {
         @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
