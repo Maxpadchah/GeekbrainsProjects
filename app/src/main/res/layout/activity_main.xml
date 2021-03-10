@@ -13,8 +13,15 @@
         style="@style/LinearLayout_type_text_view">
 
         <TextView
-            android:id="@+id/tv_console"
+            android:id="@+id/tv_console_result"
+            android:gravity="center|left"
             style="@style/TextView_type_text" />
+
+        <TextView
+            android:id="@+id/tv_console"
+            android:gravity="center|right"
+            style="@style/TextView_type_text" />
+
     </LinearLayout>
 
     <!-- Поле кнопок С, (), %, / -->

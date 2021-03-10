@@ -12,8 +12,17 @@
     <LinearLayout
         android:layout_weight="0.5"
         style="@style/LinearLayout_type_text_view">
+
+        <TextView
+            android:id="@+id/tv_console_result"
+            android:gravity="center|left"
+            android:textSize="@dimen/text_size_horisontal_viev"
+            style="@style/TextView_type_text" />
+
         <TextView
             android:id="@+id/tv_console"
+            android:gravity="center|right"
+            android:textSize="@dimen/text_size_horisontal_viev"
             style="@style/TextView_type_text" />
     </LinearLayout>
 
