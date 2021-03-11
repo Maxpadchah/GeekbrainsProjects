@@ -32,9 +32,12 @@ public class MainActivity extends AppCompatActivity {
     private Button button_dot;
     private Button button_equally;
     private String number1 = "";
-    private String moushen = "";
+    private String sign = "";
     private String number2 = "";
-    public static final String KEY_PREFIX = MainActivity.class.getCanonicalName() + ".result";
+    public static final String KEY_PREFIX_TV_CONSOLE = MainActivity.class.getCanonicalName() + ".tv_console";
+    public static final String KEY_PREFIX_NUMBER_1 = MainActivity.class.getCanonicalName() + ".number1";
+    public static final String KEY_PREFIX_NUMBER_2 = MainActivity.class.getCanonicalName() + ".number2";
+    public static final String KEY_PREFIX_SING = MainActivity.class.getCanonicalName() + ".sign";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,29 +92,29 @@ public class MainActivity extends AppCompatActivity {
                     } else tv_console.setText("");
                     break;
                 case R.id.button_percent:
-                    moushen = "%";
+                    sign = "%";
                     number2 = (String) tv_console.getText();
-                    tv_console.setText(equallyPress(number1, number2, moushen));
+                    tv_console.setText(equallyPress(number1, number2, sign));
                     break;
                 case R.id.button_del:
                     number1 = (String) tv_console.getText();
                     tv_console.setText("");
-                    moushen = "/";
+                    sign = "/";
                     break;
                 case R.id.button_mul:
                     number1 = (String) tv_console.getText();
                     tv_console.setText("");
-                    moushen = "*";
+                    sign = "*";
                     break;
                 case R.id.button_min:
                     number1 = (String) tv_console.getText();
                     tv_console.setText("");
-                    moushen = "-";
+                    sign = "-";
                     break;
                 case R.id.button_plus:
                     number1 = (String) tv_console.getText();
                     tv_console.setText("");
-                    moushen = "+";
+                    sign = "+";
                     break;
                 case R.id.button_char:
                     String string = (String) tv_console.getText();
@@ -128,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.button_equally:
                     number2 = (String) tv_console.getText();
-                    tv_console.setText(equallyPress(number1, number2, moushen));
+                    tv_console.setText(equallyPress(number1, number2, sign));
                     break;
             }
         }
@@ -137,20 +140,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle state) {
         super.onSaveInstanceState(state);
-        state.putString(KEY_PREFIX, (String) tv_console.getText());
+        state.putString(KEY_PREFIX_TV_CONSOLE, (String) tv_console.getText());
+        state.putString(KEY_PREFIX_NUMBER_1, number1);
+        state.putString(KEY_PREFIX_NUMBER_2, number2);
+        state.putString(KEY_PREFIX_SING, sign);
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        tv_console.setText(savedInstanceState.getString(KEY_PREFIX));
+        tv_console.setText(savedInstanceState.getString(KEY_PREFIX_TV_CONSOLE));
+        number1 = savedInstanceState.getString(KEY_PREFIX_NUMBER_1);
+        number2 = savedInstanceState.getString(KEY_PREFIX_NUMBER_2);
+        sign = savedInstanceState.getString(KEY_PREFIX_SING);
     }
 
-    public String equallyPress(String number1, String number2, String moushen) {
+    public String equallyPress(String number1, String number2, String sign) {
         double result = 0;
         String resultString;
-        if (!number1.equals("") && !number2.equals("") && !moushen.equals("")) {
-            switch (moushen) {
+        if (!number1.equals("") && !number2.equals("") && !sign.equals("")) {
+            switch (sign) {
                 case "+":
                     result = Double.parseDouble(number1) + Double.parseDouble(number2);
                     resultString = "" + result;
