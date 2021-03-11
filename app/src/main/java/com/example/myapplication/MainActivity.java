@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private String number2 = "";
     public static final String KEY_PREFIX_TV_CONSOLE = MainActivity.class.getCanonicalName() + ".tv_console";
     public static final String KEY_PREFIX_TV_CONSOLE_RESULT = MainActivity.class.getCanonicalName() + ".tv_console_result";
+    public static final String KEY_PREFIX_NUMBER_1 = MainActivity.class.getCanonicalName() + ".number1";
+    public static final String KEY_PREFIX_NUMBER_2 = MainActivity.class.getCanonicalName() + ".number2";
+    public static final String KEY_PREFIX_SING = MainActivity.class.getCanonicalName() + ".sing";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +154,9 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(state);
         state.putString(KEY_PREFIX_TV_CONSOLE, (String) tv_console.getText());
         state.putString(KEY_PREFIX_TV_CONSOLE_RESULT, (String) tv_console_result.getText());
+        state.putString(KEY_PREFIX_NUMBER_1, number1);
+        state.putString(KEY_PREFIX_NUMBER_2, number2);
+        state.putString(KEY_PREFIX_SING, sign);
     }
 
     @Override
@@ -158,6 +164,9 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         tv_console.setText(savedInstanceState.getString(KEY_PREFIX_TV_CONSOLE));
         tv_console_result.setText(savedInstanceState.getString(KEY_PREFIX_TV_CONSOLE_RESULT));
+        number1 = savedInstanceState.getString(KEY_PREFIX_NUMBER_1);
+        number2 = savedInstanceState.getString(KEY_PREFIX_NUMBER_2);
+        sign = savedInstanceState.getString(KEY_PREFIX_SING);
     }
 
     public String equallyPress(String number1, String number2, String sign) {
