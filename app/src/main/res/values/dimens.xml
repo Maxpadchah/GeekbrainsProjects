@@ -2,6 +2,16 @@
 <resources>
     <dimen name="button_indent">10dp</dimen>
     <dimen name="layout_size">0dp</dimen>
-    <dimen name="text_size">30sp</dimen>
-    <dimen name="text_size_horisontal">15dp</dimen>
+    <dimen name="text_size">29sp</dimen>
+    <dimen name="text_size_horisontal_viev">24sp</dimen>
+    <dimen name="text_size_horisontal">26sp</dimen>
+    <dimen name="LL_layout_margin">6dp</dimen>
+    <dimen name="inset_bottom">6dp</dimen>
+    <dimen name="inset_left">4dp</dimen>
+    <dimen name="inset_right">4dp</dimen>
+    <dimen name="inset_top">6dp</dimen>
+    <dimen name="size_settings_text">24sp</dimen>
+    <dimen name="size_settings">24dp</dimen>
+    <dimen name="size_margin_settings">40dp</dimen>
+    <dimen name="size_buttons_settings">24dp</dimen>
 </resources>

@@ -4,17 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tv_console;
+    private TextView tv_console_result;
     private Button button_C;
     private Button button_bracket;
     private Button button_percent;
@@ -35,10 +35,16 @@ public class MainActivity extends AppCompatActivity {
     private Button button_0;
     private Button button_dot;
     private Button button_equally;
+    private MaterialButton materialButton;
     private String number1 = "";
-    private String moushen = "";
+    private String sign = "";
     private String number2 = "";
-    public static final String KEY_PREFIX = MainActivity.class.getCanonicalName() + ".result";
+    public static final String KEY_PREFIX_TV_CONSOLE = MainActivity.class.getCanonicalName() + ".tv_console";
+    public static final String KEY_PREFIX_TV_CONSOLE_RESULT = MainActivity.class.getCanonicalName() + ".tv_console_result";
+    public static final String KEY_PREFIX_NUMBER_1 = MainActivity.class.getCanonicalName() + ".number1";
+    public static final String KEY_PREFIX_NUMBER_2 = MainActivity.class.getCanonicalName() + ".number2";
+    public static final String KEY_PREFIX_SING = MainActivity.class.getCanonicalName() + ".sing";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         initializingButtons();
         onCreateButtons();
     }
-
 
     View.OnClickListener numberButtons = new View.OnClickListener() {
         @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
@@ -86,37 +91,39 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.button_C:
                     tv_console.setText("");
+                    tv_console_result.setText("");
                     break;
                 case R.id.button_bracket:
-                    if (!tv_console.getText().equals("")) {
-                        double g = (double) Math.sqrt(Double.parseDouble((String) tv_console.getText()));
-                        tv_console.setText("" + g);
-                    } else tv_console.setText("");
+                    if (!tv_console.getText().equals("") && (Double.parseDouble((String) tv_console.getText()) >= 0)) {
+                        tv_console_result.setText("Корень из " + tv_console.getText() + " " + "=");
+                        double g = Math.sqrt(Double.parseDouble((String) tv_console.getText()));
+                        tv_console.setText(String.format("%.5f", g));
+                    } else tv_console.setText("Ошибка ввода");
                     break;
                 case R.id.button_percent:
-                    moushen = "%";
+                    sign = "%";
                     number2 = (String) tv_console.getText();
-                    tv_console.setText(equallyPress(number1, number2, moushen));
+                    tv_console.setText(Calculator.equallyPress(number1, number2, sign, tv_console));
                     break;
                 case R.id.button_del:
                     number1 = (String) tv_console.getText();
                     tv_console.setText("");
-                    moushen = "/";
+                    sign = "/";
                     break;
                 case R.id.button_mul:
                     number1 = (String) tv_console.getText();
                     tv_console.setText("");
-                    moushen = "*";
+                    sign = "*";
                     break;
                 case R.id.button_min:
                     number1 = (String) tv_console.getText();
                     tv_console.setText("");
-                    moushen = "-";
+                    sign = "-";
                     break;
                 case R.id.button_plus:
                     number1 = (String) tv_console.getText();
                     tv_console.setText("");
-                    moushen = "+";
+                    sign = "+";
                     break;
                 case R.id.button_char:
                     String string = (String) tv_console.getText();
@@ -132,8 +139,15 @@ public class MainActivity extends AppCompatActivity {
                     } else tv_console.setText(tv_console.getText() + ".");
                     break;
                 case R.id.button_equally:
-                    number2 = (String) tv_console.getText();
-                    tv_console.setText(equallyPress(number1, number2, moushen));
+                    if (tv_console.getText().equals("На ноль не делят")
+                            || tv_console.getText().equals("Строка переполнена")) {
+                        tv_console.setText("");
+                        tv_console_result.setText("");
+                    } else {
+                        number2 = (String) tv_console.getText();
+                        tv_console.setText(Calculator.equallyPress(number1, number2, sign, tv_console));
+                        Calculator.resultViewEdit(number1, number2, sign, tv_console_result);
+                    }
                     break;
             }
         }
@@ -142,53 +156,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle state) {
         super.onSaveInstanceState(state);
-        state.putString(KEY_PREFIX, (String) tv_console.getText());
+        state.putString(KEY_PREFIX_TV_CONSOLE, (String) tv_console.getText());
+        state.putString(KEY_PREFIX_TV_CONSOLE_RESULT, (String) tv_console_result.getText());
+        state.putString(KEY_PREFIX_NUMBER_1, number1);
+        state.putString(KEY_PREFIX_NUMBER_2, number2);
+        state.putString(KEY_PREFIX_SING, sign);
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        tv_console.setText(savedInstanceState.getString(KEY_PREFIX));
-    }
-
-    public String equallyPress(String number1, String number2, String moushen) {
-        double result = 0;
-        String resultString;
-        if (!number1.equals("") && !number2.equals("") && !moushen.equals("")) {
-            switch (moushen) {
-                case "+":
-                    result = Double.parseDouble(number1) + Double.parseDouble(number2);
-                    resultString = "" + result;
-                    break;
-                case "-":
-                    result = Double.parseDouble(number1) - Double.parseDouble(number2);
-                    resultString = "" + result;
-                    break;
-                case "*":
-                    result = Double.parseDouble(number1) * Double.parseDouble(number2);
-                    resultString = "" + result;
-                    break;
-                case "/":
-                    if (Double.parseDouble(number2) != 0) {
-                        result = Double.parseDouble(number1) / Double.parseDouble(number2);
-                        resultString = "" + result;
-                    } else resultString = "Делить на ноль нельзя!";
-                    break;
-                case "%":
-                    result = Double.parseDouble(number2) * Double.parseDouble(number1) / 100;
-                    resultString = "" + result;
-                    break;
-                default:
-                    resultString = "";
-                    break;
-            }
-        } else resultString = "";
-        if (resultString.length() > 21) return "Строка переполнена";
-        else return resultString;
+        tv_console.setText(savedInstanceState.getString(KEY_PREFIX_TV_CONSOLE));
+        tv_console_result.setText(savedInstanceState.getString(KEY_PREFIX_TV_CONSOLE_RESULT));
+        number1 = savedInstanceState.getString(KEY_PREFIX_NUMBER_1);
+        number2 = savedInstanceState.getString(KEY_PREFIX_NUMBER_2);
+        sign = savedInstanceState.getString(KEY_PREFIX_SING);
     }
 
     private void initializingButtons() {
         tv_console = findViewById(R.id.tv_console);
+        tv_console_result = findViewById(R.id.tv_console_result);
         button_C = findViewById(R.id.button_C);
         button_bracket = findViewById(R.id.button_bracket);
         button_percent = findViewById(R.id.button_percent);
@@ -209,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
         button_0 = findViewById(R.id.button_0);
         button_dot = findViewById(R.id.button_dot);
         button_equally = findViewById(R.id.button_equally);
+        materialButton = findViewById(R.id.button_settings);
     }
 
     private void onCreateButtons() {
@@ -232,5 +220,9 @@ public class MainActivity extends AppCompatActivity {
         button_plus.setOnClickListener(numberButtons);
         button_dot.setOnClickListener(numberButtons);
         button_equally.setOnClickListener(numberButtons);
+        materialButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Settings.class);
+            startActivity(intent);
+        });
     }
 }
