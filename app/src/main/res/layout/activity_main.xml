@@ -11,6 +11,10 @@
     <!-- Поле ввода -->
     <LinearLayout
         style="@style/LinearLayout_type_text_view">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_settings"
+                style="@style/ButtonMaterial_type_3"
+                />
 
         <TextView
             android:id="@+id/tv_console_result"

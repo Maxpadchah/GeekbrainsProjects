@@ -5,6 +5,7 @@
     <string name="button_bracket">&#8730;</string>
     <string name="button_percent">%</string>
     <string name="button_del">&#247;</string>
+    <string name="button_settings">&#x2746;</string>
     <string name="button_7">7</string>
     <string name="button_8">8</string>
     <string name="button_9">9</string>
@@ -21,6 +22,8 @@
     <string name="button_0">0</string>
     <string name="button_dot">.</string>
     <string name="button_equally">=</string>
+    <string name="tv_settings_1">Настройки:</string>
+    <string name="tv_settings_2">Переключить тему</string>
 
 
 </resources>

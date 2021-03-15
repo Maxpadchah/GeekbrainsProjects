@@ -12,7 +12,12 @@
     <LinearLayout
         android:layout_weight="0.5"
         style="@style/LinearLayout_type_text_view">
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_settings"
+            style="@style/ButtonMaterial_type_3"
+            android:visibility="gone"
+            android:textSize="15sp"
+            />
         <TextView
             android:id="@+id/tv_console_result"
             android:gravity="center|left"
