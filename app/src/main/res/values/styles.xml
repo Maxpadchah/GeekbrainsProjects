@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="ButtonMaterial" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginRight">@dimen/button_indent</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/grey</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:insetBottom">@dimen/inset_bottom</item>
+        <item name="android:insetLeft">@dimen/inset_left</item>
+        <item name="android:insetRight">@dimen/inset_right</item>
+        <item name="android:insetTop">@dimen/inset_top</item>
+    </style>
+
+    <style name="ButtonMaterial_type_2" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/grey</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:insetBottom">@dimen/inset_bottom</item>
+        <item name="android:insetLeft">@dimen/inset_left</item>
+        <item name="android:insetRight">@dimen/inset_right</item>
+        <item name="android:insetTop">@dimen/inset_top</item>
+    </style>
+
+    <style name="LinearLayout_type_buttons">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/layout_size</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_weight">0.5</item>
+        <item name="android:layout_margin">@dimen/LL_layout_margin</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+    <style name="LinearLayout_type_buttons_horizont">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/layout_size</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">@dimen/LL_layout_margin</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+    <style name="LinearLayout_type_text_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_margin">@dimen/LL_layout_margin</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <style name="TextView_type_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical|center</item>
+        <item name="android:text">""</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

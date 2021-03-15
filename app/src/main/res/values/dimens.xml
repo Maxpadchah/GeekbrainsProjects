@@ -4,4 +4,9 @@
     <dimen name="layout_size">0dp</dimen>
     <dimen name="text_size">30sp</dimen>
     <dimen name="text_size_horisontal">15dp</dimen>
+    <dimen name="LL_layout_margin">6dp</dimen>
+    <dimen name="inset_bottom">6dp</dimen>
+    <dimen name="inset_left">4dp</dimen>
+    <dimen name="inset_right">4dp</dimen>
+    <dimen name="inset_top">6dp</dimen>
 </resources>
