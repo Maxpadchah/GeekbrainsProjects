@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button_0;
     private Button button_dot;
     private Button button_equally;
+    private MaterialButton materialButton;
     private String number1 = "";
     private String sign = "";
     private String number2 = "";
@@ -51,11 +52,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializingButtons();
         onCreateButtons();
-        MaterialButton materialButton = findViewById(R.id.button_settings);
-        materialButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Settings.class);
-            startActivity(intent);
-        });
     }
 
     View.OnClickListener numberButtons = new View.OnClickListener() {
@@ -107,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.button_percent:
                     sign = "%";
                     number2 = (String) tv_console.getText();
-                    tv_console.setText(equallyPress(number1, number2, sign));
+                    tv_console.setText(Calculator.equallyPress(number1, number2, sign, tv_console));
                     break;
                 case R.id.button_del:
                     number1 = (String) tv_console.getText();
@@ -149,10 +145,9 @@ public class MainActivity extends AppCompatActivity {
                         tv_console_result.setText("");
                     } else {
                         number2 = (String) tv_console.getText();
-                        tv_console.setText(equallyPress(number1, number2, sign));
-                        resultViewEdit(number1, number2, sign);
+                        tv_console.setText(Calculator.equallyPress(number1, number2, sign, tv_console));
+                        Calculator.resultViewEdit(number1, number2, sign, tv_console_result);
                     }
-
                     break;
             }
         }
@@ -178,54 +173,6 @@ public class MainActivity extends AppCompatActivity {
         sign = savedInstanceState.getString(KEY_PREFIX_SING);
     }
 
-    public String equallyPress(String number1, String number2, String sign) {
-        double result = 0;
-        String resultString = "";
-        if (!number1.equals("") && !number2.equals("") && !sign.equals("")) {
-            switch (sign) {
-                case "+":
-                    result = Double.parseDouble(number1) + Double.parseDouble(number2);
-                    resultString = "" + result;
-                    break;
-                case "-":
-                    result = Double.parseDouble(number1) - Double.parseDouble(number2);
-                    resultString = "" + result;
-                    break;
-                case "*":
-                    result = Double.parseDouble(number1) * Double.parseDouble(number2);
-                    resultString = "" + result;
-                    break;
-                case "/":
-                    if (Double.parseDouble(number2) != 0) {
-                        result = Double.parseDouble(number1) / Double.parseDouble(number2);
-                        resultString = String.format("%.3f", result);
-                    } else resultString = "На ноль не делят";
-                    break;
-                case "%":
-                    result = Double.parseDouble(number2) * Double.parseDouble(number1) / 100;
-                    resultString = String.format("%.2f", result);
-                    tv_console_result.setText(number2 + "% от " + number1 + "=");
-                    break;
-                default:
-                    resultString = "";
-                    break;
-            }
-        } else resultString = "";
-        if (resultString.length() > 16) return "Строка переполнена";
-        else return resultString;
-    }
-
-    private void resultViewEdit(String number1, String number2, String sign) {
-        if (!number1.equals("") && !number2.equals("") && !sign.equals("")) {
-            if (tv_console_result.getText().length() < 21) {
-                tv_console_result.setText("");
-                tv_console_result.setText(number1 + sign + number2 + "=");
-            } else {
-                tv_console_result.setText("Строка переполнена");
-            }
-        } else tv_console_result.setText("");
-    }
-
     private void initializingButtons() {
         tv_console = findViewById(R.id.tv_console);
         tv_console_result = findViewById(R.id.tv_console_result);
@@ -249,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
         button_0 = findViewById(R.id.button_0);
         button_dot = findViewById(R.id.button_dot);
         button_equally = findViewById(R.id.button_equally);
+        materialButton = findViewById(R.id.button_settings);
     }
 
     private void onCreateButtons() {
@@ -272,5 +220,9 @@ public class MainActivity extends AppCompatActivity {
         button_plus.setOnClickListener(numberButtons);
         button_dot.setOnClickListener(numberButtons);
         button_equally.setOnClickListener(numberButtons);
+        materialButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Settings.class);
+            startActivity(intent);
+        });
     }
 }
