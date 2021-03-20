@@ -12,10 +12,11 @@
     <!-- Поле ввода -->
     <LinearLayout
         style="@style/LinearLayout_type_text_view"
-        android:layout_weight="0.5">
+        android:layout_weight="9">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_settings"
+            android:layout_marginRight="10dp"
             style="@style/ButtonMaterial_type_3"
             android:textSize="15sp" />
 
