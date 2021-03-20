@@ -28,11 +28,6 @@ public class Calculator {
                         resultString = String.format("%.3f", result);
                     } else resultString = "На ноль не делят";
                     break;
-                case "%":
-                    result = Double.parseDouble(number2) * Double.parseDouble(number1) / 100;
-                    resultString = String.format("%.2f", result);
-                    textView.setText(number2 + "% от " + number1 + "=");
-                    break;
                 default:
                     resultString = "";
                     break;
@@ -51,5 +46,28 @@ public class Calculator {
                 textView.setText("Строка переполнена");
             }
         } else textView.setText("");
+    }
+    public static String solution(String number1, String number2, String sign) {
+        String result;
+        double x = Double.parseDouble(number1);
+        double y = Double.parseDouble(number2);
+        char operator = sign.charAt(0);
+        switch (operator) {
+            case '/':
+                result = String.format("%.2f", x / (x * y / 100));
+                break;
+            case '*':
+                result = String.format("%.2f", x * (x * y / 100));;
+                break;
+            case '+':
+                result = String.format("%.2f", x + (x * y / 100));;
+                break;
+            case '-':
+                result = String.format("%.2f", x - (x * y / 100));
+                break;
+            default:
+                result = "Ошибка ввода";
+        }
+        return result;
     }
 }

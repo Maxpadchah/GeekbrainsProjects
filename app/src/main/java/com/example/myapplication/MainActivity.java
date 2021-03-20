@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.nio.charset.Charset;
+
 public class MainActivity extends AppCompatActivity {
     private TextView tv_console;
     private TextView tv_console_result;
@@ -101,9 +103,11 @@ public class MainActivity extends AppCompatActivity {
                     } else tv_console.setText("Ошибка ввода");
                     break;
                 case R.id.button_percent:
-                    sign = "%";
                     number2 = (String) tv_console.getText();
-                    tv_console.setText(Calculator.equallyPress(number1, number2, sign, tv_console));
+                    if (!tv_console.getText().equals("") && (Double.parseDouble((String) tv_console.getText()) >= 0)) {
+                        tv_console.setText(Calculator.solution(number1, number2, sign));
+                        tv_console_result.setText(number1 + " " + sign + " " + number2 + " % " + "=");
+                    } else tv_console.setText("Ошибка ввода");
                     break;
                 case R.id.button_del:
                     number1 = (String) tv_console.getText();
